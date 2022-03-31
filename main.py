@@ -114,7 +114,7 @@ def main():
     # make it into a dataframe to be easier to work with
     dataframe = get_review_summary(reviews)
 
-    # get_most_common_phrases(dataframe)
+    get_most_common_phrases(dataframe)
     get_most_common_phrases_bad(dataframe)
 
 if __name__ == "__main__":
