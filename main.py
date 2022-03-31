@@ -24,17 +24,18 @@ def get_review_summary(result_set):
 
 # return the most used words among all reviews
 def get_most_common_phrases(dataframe):
+    # create master list for all words
     master_list = []
+
+    # get the review portion from database
     text_only = dataframe['Text']
     for review in text_only:
-        #split long sentence string into individual strings and add to dict
+        # split long sentence string into individual strings and add to dict
         word_list = re.findall(r'[^\s!,.?":;0-9]+', review)
         master_list.extend(word_list)
 
-    # print(master_list)
-
-    #count frequencies
-    
+    # count frequencies
+    # make stoplist of common english words to be ignored
     ignore_list = stopwords.words('english')
     ignore_list.append('...')
     ignore_list.append('burger')
@@ -44,9 +45,7 @@ def get_most_common_phrases(dataframe):
     ignore_list.append('ann')
     ignore_list.append('arbor')
     
-
-    # print('IGNORE LIST IS!!!', type(ignore_list))
-
+    # use nltk library to find frequencies
     clean_master_list = master_list[:]
     for word in master_list:
         if word.lower() in ignore_list:
@@ -54,6 +53,8 @@ def get_most_common_phrases(dataframe):
     freq = nltk.FreqDist(clean_master_list)
     # for key,val in freq.items():
     #     print(str(key) + ':' + str(val))
+
+    # use matplotlib to generate plot
     freq.plot(20, cumulative=False)
 
 
