@@ -57,6 +57,18 @@ def get_most_common_phrases(dataframe):
     # use matplotlib to generate plot
     freq.plot(20, cumulative=False)
 
+# return the mst used words for bad reviews
+def get_most_common_phrases_bad(dataframe):
+    
+    # convert dtype object into string
+    dataframe['Rating'] = dataframe['Rating'].astype('string')
+
+    # make bad reviews dataframe
+    options = ['1 star', '2 stars'] 
+    bad_dataframe = dataframe[dataframe['Rating'].str.strip().isin(options)]
+  
+    # pass new dataframe of bad reviews into above func
+    get_most_common_phrases(bad_dataframe)
 
 def main():
     # needed to stop chrome window closing immediately
@@ -102,7 +114,8 @@ def main():
     # make it into a dataframe to be easier to work with
     dataframe = get_review_summary(reviews)
 
-    get_most_common_phrases(dataframe)
+    # get_most_common_phrases(dataframe)
+    get_most_common_phrases_bad(dataframe)
 
 if __name__ == "__main__":
     main()
