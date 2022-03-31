@@ -4,3 +4,5 @@ with reference from https://medium.com/@isguzarsezgin/scraping-google-reviews-wi
 
 install selenium, beautifulsoup 4, matplotlib, pandas, nltk
 install chrome driver: https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+git add -- . ':!env'
